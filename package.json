@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open development",
+    "serve": "cross-env ENV_TYPE=dev webpack serve",
+    "start": "webpack-dev-server --inline --open --mode development",
+    "serve:open": "cross-env ENV_TYPE=dev webpack serve --open",
     "build": "webpack --mode production"
   },
   "keywords": [],
@@ -16,7 +18,9 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
+    "@webpack-cli/serve": "^1.6.0",
     "babel-loader": "^8.0.5",
+    "cross-env": "^7.0.3",
     "html-webpack-plugin": "^3.2.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
