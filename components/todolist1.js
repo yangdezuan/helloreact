@@ -1,19 +1,27 @@
 import React, { Fragment, Component } from 'react'
 // Fragment 占位符 消除最外层div
-let itemList = [
-  {
-    id: 0,
-    title: 't1',
-  },
-  {
-    id: 1,
-    title: 't2',
-  },
-]
 
+function handleInputChange(e) {
+  this.setState({
+    inputValue: e.target.value,
+  })
+  console.log(this, 'this')
+}
+function handleBtnClick() {
+  this.setState({
+    list: [...this.state.list, this.state.inputValue],
+    inputValue: '',
+  })
+}
 function DeleteItem(index) {
-  itemList.splice(index, 1)
-  console.log(itemList, 'item')
+  // console.log(this, 'this')
+  const list = [...this.state.list]
+  list.splice(index, 1)
+  this.setState({
+    list: list,
+  })
+  // this.forceUpdate()
+  console.log(this.state.list, 'item')
 }
 class Todolist extends React.Component {
   constructor(props) {
@@ -30,21 +38,15 @@ class Todolist extends React.Component {
         <div>
           <input
             value={this.state.inputValue}
-            onChange={this.handleInputChange.bind(this)}
+            onChange={handleInputChange.bind(this)}
           />
-          <button onClick={this.handleBtnClick.bind(this)}>提交</button>
+          <button onClick={handleBtnClick.bind(this)}>提交</button>
           <ul>
-            {itemList.map((item, index) => {
+            {this.state.list.map((item, index) => {
               return (
                 <li key={index}>
-                  {item.title}{' '}
-                  <button
-                    onClick={() => {
-                      DeleteItem(item.id)
-                    }}
-                  >
-                    Del
-                  </button>
+                  {item || '空'}
+                  <button onClick={DeleteItem.bind(this, index)}>Del</button>
                 </li>
               )
             })}
@@ -52,24 +54,6 @@ class Todolist extends React.Component {
         </div>
       </Fragment>
     )
-  }
-  handleInputChange(e) {
-    this.setState({
-      inputValue: e.target.value,
-    })
-  }
-  handleBtnClick() {
-    this.setState({
-      list: [...this.state.list, this.state.inputValue],
-      inputValue: '',
-    })
-  }
-  handleItemDelete(index) {
-    const list = [...this.state.list]
-    list.splice(index, 1)
-    this.setState({
-      list: list,
-    })
   }
 }
 

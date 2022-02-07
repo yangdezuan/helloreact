@@ -20,11 +20,11 @@ class Todolist extends React.Component {
           <ul>
             {this.state.list.map((item, index) => {
               return (
-                <li
-                  key={index}
-                  onClick={this.handleItemDelete.bind(this, index)}
-                >
-                  {item}
+                <li key={index}>
+                  {item}{' '}
+                  <button onClick={this.handleItemDelete.bind(this, index)}>
+                    Delete
+                  </button>
                 </li>
               )
             })}
@@ -40,7 +40,7 @@ class Todolist extends React.Component {
   }
   handleBtnClick() {
     this.setState({
-      list: [...this.state.list, this.state.inputValue],
+      list: [...this.state.list, this.state.inputValue || '空'],
       inputValue: '',
     })
   }

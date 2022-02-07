@@ -10,9 +10,9 @@ const App = () => {
   return (
     <div>
       <ReactDemo></ReactDemo>
-      <h2>Todo list 1</h2>
+      <h2>Todo list class 1</h2>
       <Todolist></Todolist>
-      <h2>Todo list 2</h2>
+      <h2>Todo list out 2</h2>
       <Todolist1></Todolist1>
     </div>
   )
